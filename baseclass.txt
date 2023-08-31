@@ -169,14 +169,5 @@ public class baseclass {
 		confirmalert.accept();
 		return s;
 	}
-	void windowahandle(WebElement element)
-	{
-		//List<element>list;
-		driver.getWindowHandle();
-		
-		
-	}
-	
-	
 	
 }
