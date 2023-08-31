@@ -1,0 +1,182 @@
+package Baseclass;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.xmlbeans.impl.xpath.XPath;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.support.ui.Select;
+
+public class baseclass {
+	
+	static WebDriver driver;
+	static Actions a;
+	static Select s;
+	
+	void driver()
+	{
+		driver=new ChromeDriver();
+	}
+	void url(String s)
+	{
+		driver.get(s);
+	}
+	void id(String id)
+	{
+		driver.findElement(By.id(id));
+	}
+	void xpath(String xpath)
+	{
+		driver.findElement(By.xpath(xpath));
+	}
+	void name(String name)
+	{
+		driver.findElement(By.name(name));
+	}
+	void linktext(String linktext)
+	{
+		driver.findElement(By.linkText(linktext));
+	}
+	void partiallinktext(String partial)
+	{
+		driver.findElement(By.partialLinkText(partial));
+	}
+	void classname(String classname)
+	{
+		driver.findElement(By.className(classname));
+	}
+	void cssselector(String css)
+	{
+		driver.findElement(By.cssSelector(css));
+	}
+	void tagname(String tagname)
+	{
+		driver.findElement(By.className(tagname));
+	}
+	void navigate(String navigate)
+	{
+		driver.navigate().to(navigate);
+	}
+	void navigateback()
+	{
+		driver.navigate().back();
+	}
+	void navigaterefresh()
+	{
+		driver.navigate().refresh();
+	}
+	void navigateforward()
+	{
+		driver.navigate().forward();
+	}
+	void newtab()
+	{
+		driver.switchTo().newWindow(WindowType.TAB);
+	}
+	void newwindow()
+	{
+		driver.switchTo().newWindow(WindowType.WINDOW);
+	}
+	void gettext(WebElement element)
+	{
+		element.getText();
+	}
+	void getattribute(WebElement element)
+	{
+		element.getAttribute("value");
+	}
+	void movetoelement(WebElement element)
+	{
+		a.moveToElement(element).perform();
+	}
+	void dragdrop(WebElement element,WebElement element1)
+	{
+		a.dragAndDrop(element, element1).perform();
+	}
+	void contextclick(WebElement element)
+	{
+		a.contextClick(element).perform();
+	}
+	void click(WebElement element)
+	{
+		a.click(element);	
+	}
+	int selectbyindex(int select)
+	{
+		s.selectByIndex(select);
+		return select;
+	}
+	void getoption()
+	{
+		s.getOptions();
+	}
+	void getalloption()
+	{
+		s.getAllSelectedOptions();
+	}
+	void keypress(int s) throws AWTException
+	{
+		Robot r=new Robot();
+		r.keyPress(s);	
+	}
+	void keyrelease(int s) throws AWTException
+	{
+		Robot r=new Robot();
+		r.keyPress(s);
+	}
+	void screenshot(WebElement element,String s) throws IOException
+	{
+		TakesScreenshot tk=(TakesScreenshot)element;
+		File screenshotAs = tk.getScreenshotAs(OutputType.FILE);
+		File screenshotsave=new File(s);
+		FileHandler.copy(screenshotAs, screenshotsave);	
+	}
+	void iframe(int a)
+	{
+		driver.switchTo().frame(a);
+	}
+	void defaultcontent()
+	{
+		driver.switchTo().defaultContent();
+	}
+	WebElement sendkeys(WebElement element,String s)
+	{
+		element.sendKeys(s);
+		return element;
+	}
+	void simplealert()
+	{
+		
+		Alert alert = driver.switchTo().alert();
+		alert.accept();
+	}
+	String confirmalert(String s)
+	{
+		Alert confirmalert=driver.switchTo().alert();
+		confirmalert.sendKeys(s);
+		confirmalert.accept();
+		return s;
+	}
+	void windowahandle(WebElement element)
+	{
+		//List<element>list;
+		driver.getWindowHandle();
+		
+		
+	}
+	
+	
+	
+}
